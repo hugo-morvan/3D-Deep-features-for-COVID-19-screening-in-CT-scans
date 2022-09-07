@@ -12,6 +12,6 @@ Welcome to this repository about 3D Deep features for COVID-19 screening in CT-s
 
 ## Poster
 
-![presentation poster](poster.pdf)
+![presentation poster](poster.png)
 
 
