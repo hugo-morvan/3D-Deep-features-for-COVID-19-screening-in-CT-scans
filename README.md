@@ -1,4 +1,9 @@
-# Thesis
-Github repository for my Undergrade Thesis
-3D deep features for Covid-19 screening in CT scans
+# 3D Deep features for COVID-19 screening in CT-scans
+
+Github repository for my Undergraduate Thesis.
+
+# Introduction
+
+Welcome to this repository about 3D Deep features for COVID-19 screening in CT-scans. Here you will find access to the original dataset, all of the source code, the reference papers and the full thesis paper 
+
 
