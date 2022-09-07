@@ -1,1 +1,0 @@
-The link to the dataset can be found here https://stoic2021.grand-challenge.org/stoic-db/ . A full description of the dataset can be found here https://pubs.rsna.org/doi/10.1148/radiol.2021210384 .
