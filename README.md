@@ -12,6 +12,6 @@ Welcome to this repository about 3D Deep features for COVID-19 screening in CT-s
 
 ## Poster
 
-![presentation poster](3D Deep learning model for Covid-19 screening using Computed Tomography (CT) scans (1).pdf)
+![presentation poster](poster.pdf)
 
 
