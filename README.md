@@ -10,6 +10,10 @@ Welcome to this repository about 3D Deep features for COVID-19 screening in CT-s
 * The [reference papers](references/),
 * The full thesis paper (coming soon). 
 
+## Abstract
+
+(write abstract)
+
 ## Poster
 
 ![presentation poster](poster-1.png)
