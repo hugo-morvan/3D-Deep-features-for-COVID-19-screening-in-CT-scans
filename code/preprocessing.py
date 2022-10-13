@@ -12,11 +12,10 @@ import pandas as pd
 #import SimpleITK as sitk
 from medpy.io import load
 
+data_fold = r'D:\Datasets\STOIC2021\data'
+metadata_fold = r'D:\Datasets\STOIC2021\metadata\reference.csv'
 
-data_fold = r'D:\STOIC2021\data\mha'
-metadata_fold = r'D:\STOIC2021\metadata\reference.csv'
-
-path_to_label = r'D:\STOIC2021\metadata\reference.csv'
+path_to_label = r'D:\Datasets\STOIC2021\metadata\reference.csv'
 label_file = pd.read_csv(path_to_label, index_col=0)
 
 def normalize(volume):
@@ -70,7 +69,7 @@ def get_label(image):
     return lbl_cvd
 
 def get_ID(path):
-    path = path.replace("D:\STOIC2021\data\mha\\", "")
+    path = path.replace("D:\\Datasets\STOIC2021\data\mha\\", "")
     single_ID, f_ext = os.path.splitext(path)
     #print('ID: ',single_ID)
     return single_ID
@@ -82,11 +81,11 @@ paths = [os.path.join(data_fold, file) for file in os.listdir(data_fold)]
  
 def process_data():
     
-    #data = np.array([process_scan(p) for p in tqdm(paths)])
+    data = np.array([process_scan(p) for p in tqdm(paths)])
     labels = np.array([get_label(ima) for ima in tqdm(os.listdir(data_fold))])
-    #np.save(r'C:\Users\hugo.morvan\Desktop\STOIC2021\Preprocessed_data-HD\dataHD.npy',data, allow_pickle=True, fix_imports=True)
-    #print("saved data")
-    np.save(r'D:\STOIC2021\Preprocessed_data-HD\labelsHD.npy',labels, allow_pickle=True, fix_imports=True)
+    np.save(r'D:\Datasets\STOIC2021\Preprocessed_data150\data150.npy',data, allow_pickle=True, fix_imports=True)
+    print("saved data")
+    np.save(r'D:\Datasets\STOIC2021\Preprocessed_data150\labels150.npy',labels, allow_pickle=True, fix_imports=True)
     print("saved labels")
         
 process_data()
@@ -95,7 +94,7 @@ def indiv_process_data():
     for p in tqdm(paths):
         data = np.array(process_scan(p))
         ID = get_ID(p)
-        np.save(r'D:\STOIC2021\PreProcessed_data-HD\data\\'+ID, data, allow_pickle=True, fix_imports=True)
+        np.save(r'D:\Datasets\STOIC2021\PreProcessed_data150\\'+ID, data, allow_pickle=True, fix_imports=True)
 
 #indiv_process_data()
 
