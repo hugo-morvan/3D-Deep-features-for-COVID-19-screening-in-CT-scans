@@ -32,9 +32,9 @@ def normalize(volume):
 def resize_volume(img):
     """Resize across z-axis"""
     # Set the desired depth
-    desired_depth = 256 #mean depth is 433
-    desired_width = 256
-    desired_height = 256
+    desired_depth = 150 #mean depth is 433
+    desired_width = 150
+    desired_height = 150
     # Get current depth
     current_depth = img.shape[-1]
     current_width = img.shape[0]
@@ -89,7 +89,7 @@ def process_data():
     np.save(r'D:\STOIC2021\Preprocessed_data-HD\labelsHD.npy',labels, allow_pickle=True, fix_imports=True)
     print("saved labels")
         
-#process_data()
+process_data()
 
 def indiv_process_data():
     for p in tqdm(paths):
@@ -97,7 +97,7 @@ def indiv_process_data():
         ID = get_ID(p)
         np.save(r'D:\STOIC2021\PreProcessed_data-HD\data\\'+ID, data, allow_pickle=True, fix_imports=True)
 
-indiv_process_data()
+#indiv_process_data()
 
 def get_info():
     pos, sev = 0, 0
