@@ -21,19 +21,7 @@ from sklearn.model_selection import train_test_split
 """
 
 
-print("number of GPU detected: ", len(tf.config.list_physical_devices('GPU')))
-    
-def visualize_results(history):
-  figure = plt.figure(figsize=(15, 10))
-  plt.subplot(211)
-  plt.title('Cross Entropy Loss')
-  plt.plot(history.history['loss'], color='blue', label='train')
-  plt.plot(history.history['val_loss'], color='orange', label='test')
-  # plot accuracy
-  plt.subplot(212)
-  plt.title('Classification Accuracy')
-  plt.plot(history.history['acc'], color='blue', label='train')
-  plt.plot(history.history['val_acc'], color='orange', label='test')
+#print("number of GPU detected: ", len(tf.config.list_physical_devices('GPU')))
 
 ## 3D VGG16 implementation
 
@@ -92,7 +80,6 @@ def get_model_3DVGG(shape = (150, 150, 150, 1)):
 
   return model
 
-
 # --------------------Loading and splitting the dataset:-------------------------
 print('starting loading')
 dataset = np.load(r"/home/santosh_lab/shared/HugoM/hpc_fold/PreProcessed_data/data.npy", allow_pickle=True, fix_imports=True)
@@ -112,7 +99,6 @@ x_train, x_cv, y_train, y_cv = train_test_split(x,y,test_size = 0.22222, train_s
 
 print('Spliting the dataset')
 
-
 #-------------map functions for data loader--------------------------------------------------
 def train_preprocessing(volume, label):
     """Process training data by  adding a channel."""
@@ -123,7 +109,6 @@ def validation_preprocessing(volume, label):
     """Process validation data by only adding a channel."""
     volume = tf.expand_dims(volume, axis=3)
     return volume, label
-
 
 # Define data loaders.
 train_loader = tf.data.Dataset.from_tensor_slices((x_train, y_train))
@@ -145,11 +130,9 @@ validation_dataset = (
     .batch(batch_size)
     .prefetch(2)
 )
-
 #____Number 0f Epochs_________
 epochs = 2
 #_____________________________
-
 
 # --------------3D-VGG------------------------
 model=get_model_3DVGG(shape = (256, 256, 256, 1))
@@ -161,13 +144,10 @@ model.compile(
 )
 log_dir = "/home/santosh_lab/shared/HugoM/hpc_fold/" + datetime.datetime.now().strftime("%Y%m%d-%H")
 
-
 #---------Callbacks------------
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
-
 print("starting vgg training")
-
 history=model.fit(
     train_dataset, 
     validation_data=validation_dataset, 
@@ -179,14 +159,4 @@ history=model.fit(
 
 print("training completed")
 
-visualize_results(history)
-
-fig, ax = plt.subplots(1, 2, figsize=(20, 3))
-ax = ax.ravel()
-
-for i, metric in enumerate(["acc", "loss"]):
-    ax[i].plot(model.history.history[metric])
-    ax[i].plot(model.history.history["val_" + metric])
-    ax[i].set_xlabel("epochs")
-    ax[i].set_ylabel(metric)
-    ax[i].legend(["train", "val"])
+#Visualisation of results in tensorboard
