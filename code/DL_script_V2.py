@@ -7,15 +7,18 @@ import tensorflow as tf
 import keras
 from keras import layers
 from keras.optimizers import schedules
+from keras.models import load_model
+
 import datetime
 from sklearn.model_selection import train_test_split
 
+
 """ TO DO:
--Preprocess to 150x150x150 (preprocessing.py)
-    -calculate size of resulting numpy array.
--70-20-10 datasplit --V
+XPreprocess to 150x150x150 (preprocessing.py)
+    Xcalculate size of resulting numpy array. --> 25Gb --V
+X70-20-10 datasplit --V
 -Test data to see if data loaders are working
--Add evaluation metrics (AUC, Recall, ...) --V
+XAdd evaluation metrics (AUC, Recall, ...) --V
 -Add model load / save options
 -Progressive learning rate (20 at high, 10 at lower ? 10 at low lower?)
 """
@@ -82,7 +85,7 @@ def get_model_3DVGG(shape = (150, 150, 150, 1)):
 
 # --------------------Loading and splitting the dataset:-------------------------
 print('starting loading')
-dataset = np.load(r"/home/santosh_lab/shared/HugoM/hpc_fold/PreProcessed_data/data.npy", allow_pickle=True, fix_imports=True)
+dataset = np.load(r"/home/santosh_lab/shared/HugoM/hpc_fold/PreProcessed_data150/data150.npy", allow_pickle=True, fix_imports=True)
 labels = np.load(r"/home/santosh_lab/shared/HugoM/hpc_fold/PreProcessed_data/labels.npy", allow_pickle=True, fix_imports=True)
 print('loading complete')
 
@@ -135,7 +138,7 @@ epochs = 2
 #_____________________________
 
 # --------------3D-VGG------------------------
-model=get_model_3DVGG(shape = (256, 256, 256, 1))
+model=get_model_3DVGG(shape = (150, 150, 150, 1))
 # Train the model, doing validation at the end of each epoch
 model.compile(
     loss="binary_crossentropy",
@@ -154,9 +157,11 @@ history=model.fit(
     epochs=epochs,
     verbose=2, 
     callbacks=[tensorboard_callback],
-    use_multiprocessing=True
-)
+    use_multiprocessing=True)
+
+model.save("3D-VGG-150.h5")
 
 print("training completed")
 
 #Visualisation of results in tensorboard
+
