@@ -7,7 +7,8 @@ Github repository for my Undergraduate Thesis.
 Welcome to this repository about 3D Deep features for COVID-19 screening in CT-scans. Here you will find access to:
 * The [original dataset](https://registry.opendata.aws/stoic2021-training/), 
 * All of the [source code](code/) used during this project, 
-* The full thesis paper (coming soon). 
+* The [full thesis paper](Full-Paper/) (still a draft), 
+* My [poster](poster/).
 
 ## Abstract
 
