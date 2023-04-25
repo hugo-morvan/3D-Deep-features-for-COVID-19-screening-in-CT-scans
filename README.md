@@ -1,6 +1,7 @@
-# 3D Deep features for COVID-19 screening in CT-scans
+# DEEP FEATURES TO ANALYSE ABNORMALITIES IN CT SCANS DUE TO COVID-19
 
-Github repository for my Undergraduate Thesis.
+
+Github repository for my Honors Undergraduate Thesis.
 
 ## Introduction
 
